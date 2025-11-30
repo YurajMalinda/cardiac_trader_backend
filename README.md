@@ -2,9 +2,12 @@
 
 A Spring Boot REST API backend for the Cardiac Trader stock trading game. Built with Spring Boot 3.5.7, Java 17, MySQL, and Spring Security.
 
+**University of Bedfordshire (UOB) - Computer Science (CS) - Data Structures and Algorithms (DSA) Module Project**
+
 ## 🚀 Quick Start
 
 ### Prerequisites
+
 - Java 17 or higher
 - Maven 3.6+
 - MySQL 8.0+
@@ -16,11 +19,13 @@ A Spring Boot REST API backend for the Cardiac Trader stock trading game. Built 
 ### Installation
 
 1. **Clone and navigate to the backend directory**
+
    ```bash
    cd cardiac-trader-backend
    ```
 
 2. **Configure the database**
+
    - Copy the example configuration:
      ```bash
      cp src/main/resources/application.properties.example src/main/resources/application.properties
@@ -32,6 +37,7 @@ A Spring Boot REST API backend for the Cardiac Trader stock trading game. Built 
      - Configure email SMTP settings
 
 3. **Create the database**
+
    - MySQL will create the database automatically if `createDatabaseIfNotExist=true` is set
    - Or create manually:
      ```sql
@@ -39,13 +45,14 @@ A Spring Boot REST API backend for the Cardiac Trader stock trading game. Built 
      ```
 
 4. **Build and run**
+
    ```bash
    # Using Maven wrapper (Windows)
    mvnw.cmd spring-boot:run
-   
+
    # Using Maven wrapper (Linux/Mac)
    ./mvnw spring-boot:run
-   
+
    # Or using Maven directly
    mvn spring-boot:run
    ```
@@ -92,6 +99,7 @@ cardiac-trader-backend/
 ## 🎯 API Endpoints
 
 ### Authentication (`/api/auth`)
+
 - `POST /api/auth/register` - Register new user
 - `POST /api/auth/login` - User login
 - `POST /api/auth/logout` - User logout
@@ -106,26 +114,31 @@ cardiac-trader-backend/
 - `POST /api/auth/change-password` - Change password
 
 ### Game (`/api/game`)
+
 - `POST /api/game/start` - Start new game session
 - `GET /api/game/session` - Get current game session
 - `POST /api/game/round/start` - Start a round
 - `POST /api/game/round/complete` - Complete a round
 
 ### Trading (`/api/trading`)
+
 - `POST /api/trading/buy` - Buy stocks
 - `POST /api/trading/sell` - Sell stocks
 - `GET /api/trading/portfolio` - Get portfolio
 
 ### Market (`/api/market`)
+
 - `GET /api/market/stocks` - Get available stocks
 - `POST /api/market/update-prices` - Update market prices
 
 ### Tools (`/api/tools`)
+
 - `POST /api/tools/hint` - Use hint tool
 - `POST /api/tools/time-boost` - Use time boost tool
 - `GET /api/tools/available` - Check tool availability
 
 ### Health (`/api/health`)
+
 - `GET /api/health` - Health check endpoint
 
 ## 📚 API Documentation
@@ -138,6 +151,7 @@ Once the application is running, access the interactive API documentation:
 ## ⚙️ Configuration
 
 ### Database Configuration
+
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/cardiac_trader?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
 spring.datasource.username=root
@@ -146,6 +160,7 @@ spring.jpa.hibernate.ddl-auto=update
 ```
 
 ### JWT Configuration
+
 ```properties
 jwt.secret=your-256-bit-secret-key-change-this-in-production
 jwt.expiration=86400000  # 24 hours
@@ -153,12 +168,14 @@ jwt.refresh.expiration=604800000  # 7 days
 ```
 
 ### CORS Configuration
+
 ```properties
 cors.allowed.origins=http://localhost:3000,http://localhost:5173,http://localhost:8081
 cors.allowed.methods=GET,POST,PUT,DELETE,OPTIONS,PATCH
 ```
 
 ### External APIs (Optional)
+
 ```properties
 # Heart Game API (Required)
 heart.api.url=https://marcconrad.com/uob/heart
@@ -174,6 +191,7 @@ news.api.key=your_key
 ```
 
 ### Email Configuration
+
 ```properties
 app.email.enabled=true
 app.email.from=your-email@gmail.com
@@ -201,6 +219,7 @@ spring.mail.password=your-app-password
 ## 🗄️ Database Schema
 
 The application uses the following main entities:
+
 - **User**: User accounts and authentication
 - **GameSession**: Game sessions with difficulty levels
 - **Round**: Individual trading rounds
@@ -229,17 +248,21 @@ The application uses the following main entities:
 ## 📦 Building
 
 ### Development
+
 ```bash
 ./mvnw spring-boot:run
 ```
 
 ### Production Build
+
 ```bash
 ./mvnw clean package
 ```
+
 The JAR file will be in `target/cardiac-trader-backend-0.0.1-SNAPSHOT.jar`
 
 ### Run JAR
+
 ```bash
 java -jar target/cardiac-trader-backend-0.0.1-SNAPSHOT.jar
 ```
@@ -247,16 +270,21 @@ java -jar target/cardiac-trader-backend-0.0.1-SNAPSHOT.jar
 ## 🔧 Development
 
 ### Logging
+
 Logs are written to:
+
 - Console (INFO level)
 - File: `logs/cardiac-trader-backend.log`
 
 ### Database Initialization
+
 The `DataInitializer` class automatically initializes:
+
 - Default stocks
 - Sample data (if needed)
 
 ### External API Integration
+
 - **Heart Game API**: Provides heart puzzle images
 - **Alpha Vantage**: Market trend data (optional)
 - **Open Exchange Rates**: Currency fluctuations (optional)
@@ -267,24 +295,29 @@ The `DataInitializer` class automatically initializes:
 ### Common Issues
 
 1. **Database Connection Failed**
+
    - Verify MySQL is running: `mysql -u root -p`
    - Check connection URL in `application.properties`
    - Ensure database exists or `createDatabaseIfNotExist=true`
 
 2. **Port Already in Use**
+
    - Change port in `application.properties`: `server.port=8081`
    - Or stop the process using port 8080
 
 3. **JWT Token Errors**
+
    - Verify `jwt.secret` is set in `application.properties`
    - Ensure secret is at least 256 bits
    - Check token expiration settings
 
 4. **CORS Errors**
+
    - Add frontend URL to `cors.allowed.origins`
    - Verify CORS configuration in `CorsConfig.java`
 
 5. **Email Not Sending**
+
    - Check SMTP settings in `application.properties`
    - For Gmail, use App Password (16 characters)
    - Verify `app.email.enabled=true`
@@ -325,5 +358,21 @@ export NEWS_API_KEY=your_key
 
 ## 📄 License
 
-Part of the UOB-SCU DSA course project.
+This project is licensed under the MIT License.
 
+Copyright (c) 2025 Yuraj Malinda
+
+See the [LICENSE](./LICENSE) file for details.
+
+## 🎓 Academic Information
+
+This project was developed as part of the **Data Structures and Algorithms (DSA)** module in the **Computer Science (CS)** program at the **University of Bedfordshire (UOB)**.
+
+This backend component demonstrates:
+
+- Spring Boot RESTful API development
+- Data structure implementation and algorithms
+- Database design with JPA/Hibernate
+- Authentication and security (JWT, Spring Security)
+- Service-oriented architecture
+- External API integration
